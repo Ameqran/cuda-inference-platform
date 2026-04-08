@@ -1,0 +1,15 @@
+﻿target/
+.idea/
+.vscode/
+*.iml
+*.log
+*.class
+**/target/
+
+# Local environment
+.env
+*.local
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,57 @@
+﻿spring:
+  application:
+    name: cuda-inference-platform
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inference
+    username: inference
+    password: inference
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  threads:
+    virtual:
+      enabled: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8081/realms/inference
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        inference_latency_p99: true
+
+resilience4j:
+  retry:
+    instances:
+      gpuExecution:
+        max-attempts: 3
+        wait-duration: 50ms
+  circuitbreaker:
+    instances:
+      gpuExecution:
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+
+platform:
+  s3:
+    endpoint: http://localhost:4566
+    region: us-east-1
+    access-key: test
+    secret-key: test
+    bucket: model-store

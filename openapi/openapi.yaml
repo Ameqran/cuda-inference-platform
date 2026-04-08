@@ -1,0 +1,65 @@
+﻿openapi: 3.1.0
+info:
+  title: CUDA Inference Platform API
+  version: 0.1.0
+  description: Async GPU inference platform API.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/v1/jobs:
+    post:
+      summary: Submit inference job
+      responses:
+        '202':
+          description: Accepted
+  /api/v1/jobs/{id}:
+    get:
+      summary: Get job result/status
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Job status
+  /api/v1/jobs/{id}/stream:
+    get:
+      summary: Stream job status updates
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: SSE stream
+  /api/v1/models:
+    post:
+      summary: Register model
+      responses:
+        '201':
+          description: Created
+    get:
+      summary: List models
+      responses:
+        '200':
+          description: Model list
+  /api/v1/devices:
+    get:
+      summary: List GPU devices
+      responses:
+        '200':
+          description: GPU device list
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []

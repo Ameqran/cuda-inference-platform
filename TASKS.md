@@ -25,17 +25,18 @@
 - [x] Add S3 model store and docker compose stack (Postgres + LocalStack).
 
 ## 5. Interfaces + Boot Layer
-- [ ] Add REST endpoints for jobs/models/devices.
-- [ ] Add SSE endpoint for job status updates.
-- [ ] Add exception handlers and DTO mappings.
-- [ ] Add security (JWT roles) and API key rate limiting (Bucket4j).
-- [ ] Add observability metrics and resilience wrappers.
-- [ ] Add `application.yml` and OpenAPI spec.
+- [x] Add REST endpoints for jobs/models/devices.
+- [x] Add SSE endpoint for job status updates.
+- [x] Add exception handlers and DTO mappings.
+- [x] Add security (JWT roles) and API key rate limiting (Bucket4j).
+- [x] Add observability metrics and resilience wrappers.
+- [x] Add `application.yml` and OpenAPI spec.
 
 ## 6. Testing + Benchmarking
 - [ ] Add Testcontainers-based PostgreSQL integration tests.
 - [ ] Add mock CUDA strategy for CI.
 - [ ] Add JMH benchmark and latency table by batch size.
+
 
 
 

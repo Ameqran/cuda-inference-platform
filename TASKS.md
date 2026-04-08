@@ -13,9 +13,9 @@
 - [x] Add domain tests for state machine and tensor shape validation.
 
 ## 3. Application Layer
-- [ ] Add commands and queries.
-- [ ] Implement submit job, get result, register model use cases.
-- [ ] Add async orchestration ports (`JobDispatcher`, `GpuExecutorService`).
+- [x] Add commands and queries.
+- [x] Implement submit job, get result, register model use cases.
+- [x] Add async orchestration ports (`JobDispatcher`, `GpuExecutorService`).
 
 ## 4. Infrastructure Layer
 - [ ] Add Panama CUDA interop stubs (`CudaRuntime`, `CublasContext`, `CudaKernelLauncher`).
@@ -36,4 +36,5 @@
 - [ ] Add Testcontainers-based PostgreSQL integration tests.
 - [ ] Add mock CUDA strategy for CI.
 - [ ] Add JMH benchmark and latency table by batch size.
+
 

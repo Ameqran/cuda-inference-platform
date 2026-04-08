@@ -1,16 +1,16 @@
 ﻿# Task List
 
 ## 1. Bootstrap
-- [ ] Create Maven multi-module skeleton and parent dependency management.
-- [ ] Add module-level `pom.xml` files and baseline folder layout.
-- [ ] Add repository baseline docs (`README`, `.gitignore`).
+- [x] Create Maven multi-module skeleton and parent dependency management.
+- [x] Add module-level `pom.xml` files and baseline folder layout.
+- [x] Add repository baseline docs (`README`, `.gitignore`).
 
 ## 2. Domain Layer
-- [ ] Implement aggregates (`InferenceJob`, `Model`, `GpuDevice`).
-- [ ] Implement value objects and validation (`Tensor`, IDs, `BatchSize`).
-- [ ] Add domain events and repository interfaces.
-- [ ] Add domain service contract (`InferencePipelineService`).
-- [ ] Add domain tests for state machine and tensor shape validation.
+- [x] Implement aggregates (`InferenceJob`, `Model`, `GpuDevice`).
+- [x] Implement value objects and validation (`Tensor`, IDs, `BatchSize`).
+- [x] Add domain events and repository interfaces.
+- [x] Add domain service contract (`InferencePipelineService`).
+- [x] Add domain tests for state machine and tensor shape validation.
 
 ## 3. Application Layer
 - [ ] Add commands and queries.
@@ -36,3 +36,4 @@
 - [ ] Add Testcontainers-based PostgreSQL integration tests.
 - [ ] Add mock CUDA strategy for CI.
 - [ ] Add JMH benchmark and latency table by batch size.
+

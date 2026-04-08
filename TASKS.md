@@ -33,9 +33,10 @@
 - [x] Add `application.yml` and OpenAPI spec.
 
 ## 6. Testing + Benchmarking
-- [ ] Add Testcontainers-based PostgreSQL integration tests.
-- [ ] Add mock CUDA strategy for CI.
-- [ ] Add JMH benchmark and latency table by batch size.
+- [x] Add Testcontainers-based PostgreSQL integration tests.
+- [x] Add mock CUDA strategy for CI.
+- [x] Add JMH benchmark and latency table by batch size.
+
 
 
 

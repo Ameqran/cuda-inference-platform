@@ -21,6 +21,7 @@ import com.ameqran.cuda.inference.domain.service.InferencePipelineService;
 import com.ameqran.cuda.inference.infrastructure.cuda.CudaInferencePipelineService;
 import com.ameqran.cuda.inference.infrastructure.cuda.CudaKernelLauncher;
 import com.ameqran.cuda.inference.infrastructure.cuda.CudaRuntime;
+import com.ameqran.cuda.inference.infrastructure.cuda.MockCudaInferencePipelineService;
 import com.ameqran.cuda.inference.interfaces.stream.JobStatusEventListener;
 import com.ameqran.cuda.inference.interfaces.stream.JobStatusStreamService;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -29,18 +30,26 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 @Configuration
 public class ApplicationServiceConfiguration {
 
-    @Bean(name = "cudaPipelineService")
+    @Bean(name = "rawInferencePipelineService")
+    @ConditionalOnProperty(name = "platform.cuda.mode", havingValue = "cuda", matchIfMissing = true)
     public InferencePipelineService cudaPipelineService(CudaRuntime cudaRuntime, CudaKernelLauncher kernelLauncher) {
         return new CudaInferencePipelineService(cudaRuntime, kernelLauncher);
     }
 
+    @Bean(name = "rawInferencePipelineService")
+    @ConditionalOnProperty(name = "platform.cuda.mode", havingValue = "mock")
+    public InferencePipelineService mockPipelineService() {
+        return new MockCudaInferencePipelineService();
+    }
+
     @Bean
     @Primary
-    public InferencePipelineService inferencePipelineService(@Qualifier("cudaPipelineService") InferencePipelineService cudaPipelineService,
+    public InferencePipelineService inferencePipelineService(@Qualifier("rawInferencePipelineService") InferencePipelineService cudaPipelineService,
                                                              MeterRegistry meterRegistry) {
         return new ObservedInferencePipelineService(cudaPipelineService, meterRegistry);
     }

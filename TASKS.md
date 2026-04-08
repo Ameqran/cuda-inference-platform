@@ -18,11 +18,11 @@
 - [x] Add async orchestration ports (`JobDispatcher`, `GpuExecutorService`).
 
 ## 4. Infrastructure Layer
-- [ ] Add Panama CUDA interop stubs (`CudaRuntime`, `CublasContext`, `CudaKernelLauncher`).
-- [ ] Add ONNX parser + graph builder + weight uploader components.
-- [ ] Add persistence entities, assemblers, Spring Data repositories.
-- [ ] Add Flyway SQL migrations.
-- [ ] Add S3 model store and docker compose stack (Postgres + LocalStack).
+- [x] Add Panama CUDA interop stubs (`CudaRuntime`, `CublasContext`, `CudaKernelLauncher`).
+- [x] Add ONNX parser + graph builder + weight uploader components.
+- [x] Add persistence entities, assemblers, Spring Data repositories.
+- [x] Add Flyway SQL migrations.
+- [x] Add S3 model store and docker compose stack (Postgres + LocalStack).
 
 ## 5. Interfaces + Boot Layer
 - [ ] Add REST endpoints for jobs/models/devices.
@@ -36,5 +36,6 @@
 - [ ] Add Testcontainers-based PostgreSQL integration tests.
 - [ ] Add mock CUDA strategy for CI.
 - [ ] Add JMH benchmark and latency table by batch size.
+
 
 

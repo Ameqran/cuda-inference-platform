@@ -19,16 +19,37 @@ public final class InferenceJob {
     private TensorPayload result;
     private String failureReason;
 
-    private InferenceJob(JobId jobId, ModelId modelId, TensorPayload input, Instant submittedAt) {
+    private InferenceJob(JobId jobId,
+                         ModelId modelId,
+                         TensorPayload input,
+                         JobStatus status,
+                         Instant submittedAt,
+                         Instant completedAt,
+                         TensorPayload result,
+                         String failureReason) {
         this.jobId = Objects.requireNonNull(jobId, "jobId is required");
         this.modelId = Objects.requireNonNull(modelId, "modelId is required");
         this.input = Objects.requireNonNull(input, "input is required");
         this.submittedAt = Objects.requireNonNull(submittedAt, "submittedAt is required");
-        this.status = JobStatus.QUEUED;
+        this.status = Objects.requireNonNull(status, "status is required");
+        this.completedAt = completedAt;
+        this.result = result;
+        this.failureReason = failureReason;
     }
 
     public static InferenceJob queue(JobId jobId, ModelId modelId, TensorPayload input) {
-        return new InferenceJob(jobId, modelId, input, Instant.now());
+        return new InferenceJob(jobId, modelId, input, JobStatus.QUEUED, Instant.now(), null, null, null);
+    }
+
+    public static InferenceJob rehydrate(JobId jobId,
+                                         ModelId modelId,
+                                         TensorPayload input,
+                                         JobStatus status,
+                                         Instant submittedAt,
+                                         Instant completedAt,
+                                         TensorPayload result,
+                                         String failureReason) {
+        return new InferenceJob(jobId, modelId, input, status, submittedAt, completedAt, result, failureReason);
     }
 
     public void markRunning() {
